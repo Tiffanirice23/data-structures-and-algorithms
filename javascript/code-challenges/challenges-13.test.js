@@ -7,7 +7,15 @@ Write a function named longestString that takes in an array of strings and retur
 ------------------------------------------------------------------------------------------------ */
 
 const longestString = (arr) => {
-// Solution code here...
+  let currentLongest = 0;
+  let index = -1;
+  arr.forEach((str, idx) => {
+    if (str.length > currentLongest){
+      currentLongest = str.length;
+      index=idx;
+    }
+  });
+  return index;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -19,8 +27,14 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 ------------------------------------------------------------------------------------------------ */
 
 const firstLetters = (arr) => {
-  // Solution code here...
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    const firstLetter = arr[i][0];
+    result.push(firstLetter);
+  }
+  return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -31,7 +45,7 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
-  // Solution code here...
+  return arr.filter(str => str.includes(':)'));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -43,19 +57,25 @@ For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
 const standardizePhoneNumbers = (arr) => {
-  // Solution code here...
+  return arr.map (num => {
+    return `${num.substring(1, 4)}$num.substring(6, 9)}${num.substring(10)}`;
+  });
 };
 
-/* ------------------------------------------------------------------------------------------------
-CHALLENGE 5
+//  */------------------------------------------------------------------------------------------------
+// CHALLENGE 5
 
-Write a function named onlyOddChars that takes in a string and returns only the odd-index characters from that string.
+// Write a function named onlyOddChars that takes in a string and returns only the odd-index characters from that string.
 
-For example, 'abcdefg' returns 'bdf'
------------------------------------------------------------------------------------------------- */
+// For example, 'abcdefg' returns 'bdf'
+// ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+  // let arr = str.split('');
+  // let result = arr.filter((element, idx) => idx % 2 === 1);
+  // return result.join('');
+
+  return str.split('').filter((element, idx) => idx % 2 === 1).join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -65,7 +85,7 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  return arr.every(string => string.includes(':)'));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -154,7 +174,7 @@ Run your tests from the console: jest challenges-13.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should return an index position of the longest string', () => {
     const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki']
     const strArray2 = [];
@@ -166,7 +186,7 @@ xdescribe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return the first letter of each element of the array', () => {
     const words = ['apple', 'banana', 'cantaloupe'];
 
@@ -176,7 +196,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return only the strings that contain smiley faces', () => {
     const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
 
@@ -196,7 +216,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should only return the odd indexed characters from the string', () => {
     expect(onlyOddChars('0123456789')).toStrictEqual('13579');
     expect(onlyOddChars('abcd')).toStrictEqual('bd');
@@ -205,7 +225,7 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should correctly assess whether all the strings are happy', () => {
     const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
 
