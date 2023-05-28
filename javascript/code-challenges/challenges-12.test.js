@@ -32,7 +32,7 @@ If the word is between 5 and 10 characters long, return true. Otherwise, return 
 ------------------------------------------------------------------------------------------------ */
 
 const validateWord = (word) => {
-  let pattern = /^(.{5}|.{10})$/;
+  let pattern = /^[a-zA-z]{5,10}$/;
   return pattern.test(word);
 };
 
@@ -92,9 +92,9 @@ Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  let pattern = /^(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$/;
+  return pattern.test(phoneNumber);
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
@@ -137,7 +137,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should validate a word between 5 and 10 characters', () => {
     expect(validateWord('Hello')).toBeTruthy();
     expect(validateWord('Bob')).toBeFalsy();
